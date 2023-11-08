@@ -1,4 +1,7 @@
+# 一、初始化项目
+
 ## 项目初始目录结构
+
 * node_modules：项目安装的第三方包的存放目录。
 * public：存放不需要编译构建的纯静态资源的目录。
 * src：基本上所有需要编译构建的资源，都存放在src目录，打包构建，主要就是构建src中的代码。
@@ -14,6 +17,7 @@
 * vite.config.js：vite的配置文件，所有vite的相关配置都在这里进行配置。
 
 ## 项目定制目录结构
+
 在src目录里面创建文件目录：
 
 * api：接口存放目录。
@@ -57,7 +61,7 @@ origin = 仓库地址，就是仓库地址的别名。
 -u的意思是将这次提交到 origin master 记录下来，下次提交同一个地址和仓库就直接push就可以了。
 意思是将本地master分支的代码推送到线上的master分支上去。
 
-## ESlint代码规范+Prettier格式化+stylelint样式代码规范校验
+# 二、ESlint代码规范+Prettier格式化+stylelint样式代码规范校验
 
 vite创建的项目是默认没有集成ESLint的，所以我们需要手动去安装配置ESLint。
 ### 安装并配置 ESLint
@@ -468,7 +472,7 @@ pnpm add stylelint postcss postcss-scss postcss-html stylelint-config-prettier-s
   }
 ```
 
-## 添加生成Vue3模板的配置
+# 三、添加生成Vue3模板的配置
 
 1. 在项目根目录的`.vscode`文件夹下新建 `vue3.0.code-snippets`文件
 2. 在`vue3.0.code-snippets`中将下面的代码片段复制粘贴进去：
@@ -495,6 +499,8 @@ pnpm add stylelint postcss postcss-scss postcss-html stylelint-config-prettier-s
     }
 }
 ```
+
+# 四、在git commit提交的时候进行代码规范校验
 
 ## 配置git commit提交规范
 
@@ -571,3 +577,648 @@ npx lint-staged
 如果node版本过低，则会出现如下报错：
 
 ![image.png](README.assets/node版本过低.webp)
+
+# 五、在开发（dev）和构建（build）中进行代码规范校验
+
+## 在开发（dev）和构建（build）中进行代码规范校验
+
+### vite-plugin-eslint
+
+* 安装
+
+```bash
+npm install --save-dev vite-plugin-eslint
+```
+
+* 配置 `vite.config.ts`:
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import eslint from 'vite-plugin-eslint'
+
+export default defineConfig({
+plugins: [vue(), eslint()]
+})
+```
+
+配置完成后记得重启项目
+
+![image.png](README.assets/重启.webp)
+
+在打包构建的时候碰到了这个报错：`Could not find a declaration file for module 'vite-plugin-eslint'.`
+
+解决：
+
+直接在**src**目录下的**vite-env.d.ts**中添加：
+
+```js
+// 解决打包构建的时候，报错：Could not find a declaration file for module 'vite-plugin-eslint'
+declare module 'vite-plugin-eslint'
+```
+
+# 六、git commit的提交规范+commit-message+changlog
+
+## git commit提交代码的规范
+
+## commitlint
+
+[commitlint](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fconventional-changelog%2Fcommitlint%23getting-started) 检查您的提交消息是否符合[常规提交格式](https://link.juejin.cn?target=https%3A%2F%2Fconventionalcommits.org%2F)。
+
+```scss
+复制代码type(scope?): subject
+
+-----
+
+feat(index): 新增了xxx
+```
+
+根据[commitlint-config-conventional （基于 Angular 约定）的](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fconventional-changelog%2Fcommitlint%2Ftree%2Fmaster%2F@commitlint%2Fconfig-conventional%23type-enum)常见类型可以是：
+
+| **类型** | **描述**                                               |
+| -------- | ------------------------------------------------------ |
+| build    | 编译相关的修改，例如发布版本、对项目构建或者依赖的改动 |
+| chore    | 其他修改, 比如改变构建流程、或者增加依赖库、工具等     |
+| ci       | 持续集成修改                                           |
+| docs     | 文档修改                                               |
+| feat     | 新特性、新功能                                         |
+| fix      | 修改bug                                                |
+| perf     | 优化相关，比如提升性能、体验                           |
+| refactor | 代码重构                                               |
+| revert   | 回滚到上一个版本                                       |
+| style    | 代码格式修改, 注意不是 css 修改                        |
+| test     | 测试用例修改                                           |
+
+## 安装commitlint
+
+在windows系统下安装的命令:
+
+```scss
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+```
+
+## 添加 commit-msg 钩子
+
+前提是已经安装并初始化过**husky**，如果未初始化过请看**第五章**
+
+```bash
+npx husky add .husky/commit-msg
+```
+
+**.husky/commit-msg**： 将undefined替换成**npx --no -- commitlint --edit ${1}**
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no -- commitlint --edit ${1}
+```
+
+**创建.commitlintrc.js**：
+
+```js
+module.exports = {extends: ['@commitlint/config-conventional']}
+```
+
+当git commit提交到本地仓库的时候，如果**commit message**不符合规范，终端会有类似提示：
+
+比如：
+
+```bash
+复制代码git commit -m "123123"
+```
+
+![image.png](README.assets/commit-message.webp)
+
+input: 表示你输入的git message信息;
+
+subject may not be empty：subject不能为空;
+
+type may not be empty：type不能为空;
+
+修改成：
+
+```bash
+git commit -m "feat(init): 添加了commitlint,git提交规范校验"
+```
+
+![image.png](README.assets/message修改后.webp)
+
+显示这个就说明已经成功提交到本地缓存区啦！
+
+值得注意的是，在 **type(scope?):** 里的 **:** 是英文半角的，并且与**subject描述**之间有一个空格。
+
+## commit可视化
+
+虽然git commit的规范是有了，但是每一次都需要手动的去敲，并且[header](https://link.juejin.cn/?target=scope)也不是很好记，所以决定使用commit可视化工具：[cz-git](https://link.juejin.cn/?target=https%3A%2F%2Fcz-git.qbb.sh%2Fzh%2Fguide%2F)。
+
+### 安装
+
+1.全局安装**commitizen**:
+
+```bash
+复制代码npm install -g commitizen
+```
+
+2.在项目中安装[cz-git](https://link.juejin.cn/?target=https%3A%2F%2Fcz-git.qbb.sh%2Fzh%2Fguide%2F):
+
+```bash
+npm install -D cz-git
+```
+
+3.修改 `package.json` 添加 `config` 指定使用的适配器:
+
+```bash
+{ .
+    "scripts": {...}, 
+    "config": { 
+        "commitizen": { 
+            "path": "node_modules/cz-git" 
+        } 
+    } 
+}
+```
+
+4.添加自定义配置(可选，使用默认)
+
+**cz-git 与 [commitlint](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fconventional-changelog%2Fcommitlint) 进行联动给予校验信息**，所以可以编写于 [commitlint](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fconventional-changelog%2Fcommitlint%23config) 配置文件之中。
+
+```js
+// .commitlintrc.js
+
+
+/** @type {import('cz-git').UserConfig} */
+
+export default {
+  extends: ['@commitlint/config-conventional'],
+  prompt: {
+    alias: { fd: 'docs: fix typos' },
+    messages: {
+      type: '选择你要提交的类型 :',
+      scope: '选择一个提交范围（可选）:',
+      customScope: '请输入自定义的提交范围 :',
+      subject: '填写简短精炼的变更描述 :\n',
+      body: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
+      breaking: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
+      footerPrefixesSelect: '选择关联issue前缀（可选）:',
+      customFooterPrefix: '输入自定义issue前缀 :',
+      footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
+      confirmCommit: '是否提交或修改commit ?'
+    },
+    // type
+    types: [
+      { value: 'feat', name: 'feat:     新增功能 ✨ A new feature' },
+      { value: 'fix', name: 'fix:      修复缺陷 🐛 A bug fix' },
+      { value: 'docs', name: 'docs:     文档更新 ✏️ Documentation only changes' },
+      { value: 'style', name: 'style:    代码格式 🎨 Changes that do not affect the meaning of the code' },
+      {
+        value: 'refactor',
+        name: 'refactor: 代码重构 ♻ A code change that neither fixes a bug nor adds a feature'
+      },
+      { value: 'perf', name: 'perf:     性能提升 ⚡ A code change that improves performance' },
+      { value: 'test', name: 'test:     测试相关 🧪 Adding missing tests or correcting existing tests' },
+      {
+        value: 'build',
+        name: 'build:    打包构建 📦️ Changes that affect the build system or external dependencies'
+      },
+      { value: 'ci', name: 'ci:       持续集成 💚 Changes to our CI configuration files and scripts' },
+      { value: 'revert', name: 'revert:   回退代码 ⏪️ Revert to a commit' },
+      { value: 'chore', name: 'chore:    构建/工程依赖/工具 🎉 Other changes that do not modify src or test files' }
+    ],
+    useEmoji: true,
+    emojiAlign: 'center'
+  }
+}
+```
+
+更多配置以及配置模板可以到cz-git官网查看：[配置模板](https://link.juejin.cn/?target=https%3A%2F%2Fcz-git.qbb.sh%2Fzh%2Fconfig%2F)。
+
+还可以在`paceage.json`的`script`脚本中添加`commit`脚本，这样会比较方便一些，只需要运行一下这个命令即可实现添加到缓存区并提交到本地仓库中：
+
+```json
+"scripts": {
+    "commit": "git add -A && cz && git push"
+},
+```
+
+### 效果
+
+![image.png](README.assets/效果.webp)
+
+## 提交信息开头添加emoji
+
+**具体效果如下：**
+
+![image.png](README.assets/emoji.webp)
+
+**实现步骤：**
+
+1.安装**commitlint-config-gitmoji**和**commitlint**
+
+[commitlint-config-gitmoji](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Farvinxx%2Fgitmoji-commit-workflow%2Fblob%2Fmaster%2Fpackages%2Fcommitlint-config)
+
+```bash
+npm install --save-dev commitlint-config-gitmoji commitlint
+```
+
+2.添加配置项
+
+在`.commitlintrc.js`文件中将`extends`配置项中的 **@commitlint/config-conventional** 换成 **gitmoji**：
+
+```js
+module.exports = {
+  extends: ['gitmoji'],
+}
+```
+
+如果不修改的话会报错：
+
+![image.png](README.assets/报错.webp)
+
+这是因为 **@commitlint/config-conventional** 默认的预设是 angular ，像这种自定义表情的commmit，规范和angular不一样，它读不到对应的**type**生成的更改日志是没法分类就会报错，所以我们要换成使用**gitmoji**，并且在后面的**changelog**中添加emoji也是需要使用到**gitmoji**的，不然emoji表情不会显示。
+
+3.为`.commitlintrc.js`中的`prompt.types`配置项的每一个数组元素的**value**值的开头添加**emoji**：
+
+```js
+prompt: {
+    // types
+    types: [
+      { value: ':sparkles: feat', name: 'feat:     新增功能 ✨ A new feature' },
+      { value: ':bug: fix', name: 'fix:      修复缺陷 🐛 A bug fix' },
+      { value: ':pencil2: docs', name: 'docs:     文档更新 ✏️ Documentation only changes' },
+      { value: ':art: style', name: 'style:    代码格式 🎨 Changes that do not affect the meaning of the code' },
+      {
+        value: ':recycle: refactor',
+        name: 'refactor: 代码重构 ♻ A code change that neither fixes a bug nor adds a feature'
+      },
+      { value: ':zap: perf', name: 'perf:     性能提升 ⚡ A code change that improves performance' },
+      { value: ':test_tube: test', name: 'test:     测试相关 🧪 Adding missing tests or correcting existing tests' },
+      {
+        value: ':package: build',
+        name: 'build:    打包构建 📦️ Changes that affect the build system or external dependencies'
+      },
+      { value: ':green_heart: ci', name: 'ci:       持续集成 💚 Changes to our CI configuration files and scripts' },
+      { value: ':rewind: revert', name: 'revert:   回退代码 ⏪️ Revert to a commit' },
+      {
+        value: ':tada: chore',
+        name: 'chore:    构建/工程依赖/工具 🎉 Other changes that do not modify src or test files'
+      }
+    ],
+}
+```
+
+emoji引用官方给的这个网站里面的：[gitmoji](https://link.juejin.cn/?target=https%3A%2F%2Fgitmoji.dev%2F)
+
+## changelog
+
+为什么需要 CHANGELOG ？它记录你项目所有的commit信息并归类版本，可以快速跳转到该条commit记录，甚至可以显示修改人信息一眼发现bug的创建者😂。它能让你方便知道项目里哪个版本做了哪些功能有哪些bug等信息。也方便排查bug，对于提交记录一目了然，不用一个一个去翻去查。
+
+## 安装
+
+1.安装**standard-version**
+
+```bash
+npm install standard-version --save-dev
+```
+
+2.在**package.json**中添加：
+
+```bash
+{ 
+    "scripts": { 
+        "release": "standard-version" 
+    } 
+}
+```
+
+3.执行**npm run standard-version**，就会根据你的commit信息自动生成 **CHANGELOG.md** 文件，当你的commit type是 feat和fix的时候执行这个命令，它会自增版本号。
+
+4.[standard-version](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fconventional-changelog%2Fstandard-version) 提供自定义配置不同类型对应显示文案，在根目录新建 `.versionrc.cjs` 文件，然后添加如下内容：
+
+```js
+module.exports = { 
+    "types": 
+        [ 
+            { "type": "feat", "section": "Features | 新功能" }, 
+            { "type": "fix", "section": "Bug Fixes | Bug 修复" }, 
+            { "type": "init", "section": "Init | 初始化" }, 
+            { "type": "docs", "section": "Documentation | 文档" }, 
+            { "type": "style", "section": "Styles | 风格" }, 
+            { "type": "refactor", "section": "Code Refactoring | 代码重构" }, 
+            { "type": "perf", "section": "Performance Improvements | 性能优化" }, 
+            { "type": "test", "section": "Tests | 测试" }, 
+            { "type": "revert", "section": "Revert | 回退" }, 
+            { "type": "build", "section": "Build System | 打包构建" }, 
+            { "type": "chore", "section": "Chore | 构建/工程依赖/工具" }, 
+            { "type": "ci", "section": "Continuous Integration | CI 配置" } 
+        ] 
+}
+```
+
+效果图：
+
+![image.png](README.assets/Changelog.webp)
+
+### changelog添加emoji表情
+
+1.安装**conventional-changelog-gitmoji-config**
+
+[conventional-changelog-gitmoji-config](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Farvinxx%2Fgitmoji-commit-workflow%2Fblob%2Fmaster%2Fpackages%2Fchangelog)
+
+```bash
+npm install --save-dev conventional-changelog-gitmoji-config
+```
+
+2.修改**package.json**中的配置：
+
+```json
+{
+    "scripts": {
+        "release": "standard-version --preset gitmoji-config",
+    }
+}
+```
+
+standard-version 通过 --preset 命令另外指定预设，所以在**standard-version**后面添加 **--preset gitmoji-config**来指定预设为**gitmoji-config**。
+
+3.修改`.versionrc.cjs`文件的内容：
+
+```js
+module.exports = {
+  types: [
+    { type: 'feat', section: '✨ Features | 新功能' },
+    { type: 'fix', section: '🐛 Bug Fixes | Bug 修复' },
+    { type: 'init', section: '🎉 Init | 初始化' },
+    { type: 'docs', section: '✏️ Documentation | 文档' },
+    { type: 'style', section: '💄 Styles | 风格' },
+    { type: 'refactor', section: '♻️ Code Refactoring | 代码重构' },
+    { type: 'perf', section: '⚡ Performance Improvements | 性能优化' },
+    { type: 'test', section: '✅ Tests | 测试' },
+    { type: 'revert', section: '⏪ Revert | 回退' },
+    { type: 'build', section: '📦‍ Build System | 打包构建' },
+    { type: 'chore', section: '🚀 Chore | 构建/工程依赖/工具' },
+    { type: 'ci', section: '👷 Continuous Integration | CI 配置' }
+  ]
+}
+```
+
+效果：
+
+![image.png](README.assets/加emoji的效果.webp)
+
+# 七、配置模块路径别名和环境
+
+在 vite.config.js
+
+```js
+import { fileURLToPath, URL } from 'node:url'
+
+export default defineConfig({
+    // env文件目录
+    envDir: "env",
+    // 环境变量前缀
+    // envPrefix: 'LIU',
+    plugins: [vue()],
+    resolve: {
+        // 配置别名
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
+    }
+});
+```
+
+# 八、CSS样式管理
+
+## CSS样式管理
+
+## css 预处理器
+
+这里我们选择的是**sass/scss**
+
+```bash
+npm install --save-dev sass
+```
+
+### 样式目录结构
+
+```scss
+variables.scss // 全局Sass变量
+mixin.scss // 全局混入 mixin
+common.scss // 全局公共样式
+transition.scss // 全局过度动画样式
+index.scss // 组织统一导出
+```
+
+常见的工作流是，全局样式都写在`src/styles`目录下，每个页面自己对应的样式都写在自己的`.vue`文件之中。
+
+### normalize.css
+
+安装`normalize.css`，用来清除浏览器的默认样式，然后在`index.scss`中引入。
+
+```bash
+pnpm add normalize.css
+
+// index.scss
+@use 'normalize.css';
+```
+
+![image.png](README.assets/css管理.webp)
+
+然后在main.ts中引入**index.scss**即可。
+
+如果想在组件中**使用全局css变量**的话，需要在组件中单独引入全局变量的`.scss`文件。
+
+### css.preprocessorOptions
+
+vite官方提供了指定传递给 CSS 预处理器的选项，所有预处理器选项还支持 `additionalData` 选项，可以用于为每个样式内容注入额外代码。只要将全局变量的`.scss`文件的路径作为 `additionalData` 的value就可以不用再在每一个组件中都去引入一次了，就相当于全局加载了scss变量的文件。
+
+```js
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    eslint({
+      cache: false
+    })
+  ],
+  resolve: {
+    // 路径别名
+    alias: [{ find: '@', replacement: pathResolve('src') }]
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@use "@/styles/variables.scss" as *;'
+      }
+    }
+  }
+})
+```
+
+# 九、路由router
+
+## 路由router
+
+### 安装路由
+
+```bash
+npm install vue-router@4
+```
+
+### 注册路由
+
+在项目`src/router`目录下创建`index.ts`文件：
+
+在`index.ts`中：
+
+```js
+// router/index.ts
+
+import type { App } from 'vue'
+import { createRouter, createWebHistory, type Router, type RouteRecordRaw } from 'vue-router'
+
+/** 引入modules目录下的所有.ts模块 */
+const modules: Record<string, any> = import.meta.glob('./modules/*.ts', { eager: true })
+console.log(modules)
+/** 所有模块暴露的路由配置 */
+const routeList: RouteRecordRaw[] = []
+
+/** 遍历moduls的所有key拿到所有模块暴露的内容 */
+Object.keys(modules).forEach((key) => {
+  routeList.push(...modules[key].default)
+})
+
+console.log('routeList', routeList)
+
+/** 存放路由的列表 */
+const routes: RouteRecordRaw[] = []
+
+/** 创建路由实例对象 */
+const router: Router = createRouter({
+  history: createWebHistory(), // 路由的模式，这里是history模式
+  routes: routes.concat(routeList) // 路由列表
+})
+
+/** 注册路由实例对象 */
+export function setupRouter(app: App): void {
+  app.use(router)
+}
+
+/** 向外暴露路由实例对象 */
+export default router
+
+```
+
+创建`router/router.type.d.ts`文件，它的作用是用来声明路由的格式以及其他路由模块用到的规则：
+
+```js
+//  router.type.d.ts
+
+import type { Component, VNode } from 'vue'
+
+/** 路由格式 */
+export interface DDRouteRecordRaw {
+  /** 路由地址 */
+  path: string
+  /** 路由名称 */
+  name?: string
+  /** 路由地址对应的组件 */
+  component?: Component
+  /** 路由重定向 */
+  redirect?: string
+  /** 路由元信息 */
+  meta?: {
+    /** 侧边栏菜单标题 */
+    title?: string
+    /** 侧边栏菜单图标 */
+    icon?: VNode | string
+    /** 侧边栏中的排序---只有顶级菜单才有 */
+    sort?: number
+    /** 是否显示在侧边栏中 */
+    sidebarVisibility?: boolean
+  }
+  /** 子路由 */
+  children?: DDChildrenRouteRecordRaw[]
+}
+
+/** 子路由格式 */
+export interface DDChildrenRouteRecordRaw {
+  /** 路由地址 */
+  path: string
+  /** 路由名称 */
+  name?: string
+  /** 路由地址对应的组件 */
+  component?: Component
+  /** 路由元信息 */
+  meta: {
+    /** 侧边栏菜单标题 */
+    title?: string
+    /** 侧边栏菜单图标 */
+    icon?: VNode | string
+    /** 页面权限 */
+    roles?: string
+    /** 按钮级别权限 */
+    auths?: string
+  }
+  /** 子路由 */
+  children?: DDChildrenRouteRecordRaw[]
+}
+```
+
+创建`src/router/modules/map.ts`目录，它是用来存放各个模块的路由配置：
+
+```js
+import type { DDRouteRecordRaw } from '../router.type'
+
+/** 地图模块路由配置 */
+const routes: DDRouteRecordRaw[] = [
+   {
+     path: '/map',
+     redirect: '/map/index',
+     meta: {
+       sort: 0,
+       title: '地图',
+       icon: '',
+       sidebarVisibility: false
+     },
+     children: [
+       {
+         path: 'index',
+         name: 'Map',
+         component: () => import('@/views/map/index.vue'),
+         meta: {
+           title: '地图',
+           icon: ''
+         }
+       }
+     ]
+   }
+ ]
+
+export default routes
+```
+
+**App.vue**：
+
+```html
+<template>
+  <div class="app">
+    <router-view></router-view>
+  </div>
+</template>
+
+<script setup lang="ts">
+defineOptions({
+  name: 'App'
+})
+</script>
+
+<style lang="scss" scoped>
+    .app {
+      background-color: $color;
+    }
+</style>
+```
+
