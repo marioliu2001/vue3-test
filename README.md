@@ -1,12 +1,4 @@
-# Vue 3 + Vite
-
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-### 项目初始目录结构
+## 项目初始目录结构
 * node_modules：项目安装的第三方包的存放目录。
 * public：存放不需要编译构建的纯静态资源的目录。
 * src：基本上所有需要编译构建的资源，都存放在src目录，打包构建，主要就是构建src中的代码。
@@ -21,7 +13,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 * README.md：项目说明文档。
 * vite.config.js：vite的配置文件，所有vite的相关配置都在这里进行配置。
 
-### 项目定制目录结构
+## 项目定制目录结构
 在src目录里面创建文件目录：
 
 * api：接口存放目录。
@@ -34,7 +26,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 * views：存放项目中的路由组件。此处的组件命名通常使用小写字母多个单词使用-连接。
 * composables：存放项目中提取出来的、封装的组合式API函数。
 
-### 提交到git版本管理
+## 提交到git版本管理
 作用：代码备份、历史记录、多人协作。
 
 1.初始化一个本地空的git仓库
@@ -69,6 +61,7 @@ origin = 仓库地址，就是仓库地址的别名。
 
 vite创建的项目是默认没有集成ESLint的，所以我们需要手动去安装配置ESLint。
 ### 安装并配置 ESLint
+
 ```bash
 npm init @eslint/config
 ```
@@ -503,3 +496,78 @@ pnpm add stylelint postcss postcss-scss postcss-html stylelint-config-prettier-s
 }
 ```
 
+## 配置git commit提交规范
+
+在提交代码到git仓库之前，Eslint自动的去验证代码规范，防止不符合规范的代码提交到git仓库中。
+
+### 安装lint-staged
+
+[lint-staged](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fokonet%2Flint-staged%23examples)的作用是针对暂存的 git 文件运行 linter，对代码进行规范检查，怎么进行检查需要自己进行配置，并且不要让💩滑入您的代码库！
+
+```bash
+npm install --save-dev lint-staged
+```
+
+### 安装husky
+
+提供git钩子的工具，设置在提交（commit）代码的时候通过 git hook 来运行*lint-staged*。
+
+[husky](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ftypicode%2Fhusky)这个工具就类似于**请求拦截器**在git commit或者是git push的时候去做点什么。
+
+```bash
+npx husky-init && npm install
+```
+
+运行这个命令会：
+
+1. 添加`prepare: 'husky install'`脚本到`package.json`，添加完这个命令，别人拉取代码`npm install`时会自动执行**prepare**命令，保证别人拉取的代码也有git 钩子。
+2. 创建一个`pre-commit`可以编辑的示例挂钩（默认情况下，`npm test`将在提交时运行）
+3. 配置Git钩子路径
+
+### 配置lint-staged
+
+在项目根目录创建`.lintstagedrc`文件，然后使用**commonjs**模块规范向外暴露一个对象：
+
+```js
+{
+    "*.{js,ts}": [
+        "eslint --fix", // 通过eslint重新格式化代码
+        "prettier --write" // 通过prettier重新格式化代码
+      ],
+      "*.{cjs,json}": [
+        "prettier --write"
+      ],
+      "*.{vue,html}": [
+        "eslint --fix",
+        "prettier --write",
+        "stylelint --fix"
+      ],
+      "*.{scss,css}": [
+        "stylelint --fix",
+        "prettier --write"
+      ],
+      "*.md": [
+        "prettier --write"
+      ]
+}
+```
+
+### 修改.husky/pre-commit
+
+将 **npm test** 换成 **npx lint-staged**
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# npm test
+npx lint-staged
+```
+
+配置好后，在**git commit**的时候就会运行**npx lint-staged**命令，从而运行**eslint**等代码规范校验工具，对代码进行规范验证。、
+
+![image.png](README.assets/git-commit校验.webp)
+
+如果node版本过低，则会出现如下报错：
+
+![image.png](README.assets/node版本过低.webp)

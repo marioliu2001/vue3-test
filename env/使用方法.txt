@@ -1,0 +1,11 @@
+默认情况下
+npm run dev 会加载 .env 和 .env.development 内的配置
+npm run build 会加载 .env 和 .env.production 内的配置
+mode 可以通过命令行 --mode 选项来重写。
+
+console.log(' HI: ',  import.meta.env.HI);
+console.log(' VITE_HI: ',  import.meta.env.VITE_HI);
+console.log(' HELLO: ',  import.meta.env.HELLO);
+console.log(' VITE_HELLO: ',  import.meta.env.VITE_HELLO);
+console.log(' MD: ',  import.meta.env.MD);
+console.log(' VITE_MD: ',  import.meta.env.VITE_MD);
