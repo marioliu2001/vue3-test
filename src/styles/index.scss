@@ -3,3 +3,7 @@
 @use './mixin.scss';
 @use './transition.scss';
 @use 'normalize.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

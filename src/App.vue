@@ -7,12 +7,13 @@ defineOptions({
 <template>
   <div class="app">
     <router-view></router-view>
-    qwe
   </div>
 </template>
 
 <style lang="scss" scoped>
 .app {
-  background-color: $main-bg-color;
+  width: 100vw;
+  height: 100vh;
+  //background-color: $main-bg-color;
 }
 </style>

@@ -16,7 +16,7 @@ const router = createRouter({
             // 路由路径
             path: "/home",
             // 组件
-            // component: () => import("@/views/home/home.vue")
+            component: () => import("@/layout/index.vue")
         },
     ]
 })
