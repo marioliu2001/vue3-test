@@ -2,11 +2,11 @@
 import SideBar from './SideBar/index.vue'
 import Header from './Header/index.vue'
 
-import useLayoutStore from "@/stores/modules/layout.js"
-import {storeToRefs} from "pinia";
+import useLayoutStore from '@/stores/modules/layout.js'
+import { storeToRefs } from 'pinia'
 
 const layoutStore = useLayoutStore()
-const {isCollapse} = storeToRefs(layoutStore)
+const { isCollapse } = storeToRefs(layoutStore)
 </script>
 
 <template>
@@ -23,9 +23,7 @@ const {isCollapse} = storeToRefs(layoutStore)
         </el-header>
         <!-- 主要内容区域 -->
         <el-main>
-          <h1 class="text-3xl font-bold">
-            Hello world!
-          </h1>
+          <router-view/>
         </el-main>
       </el-container>
     </el-container>
@@ -44,6 +42,10 @@ const {isCollapse} = storeToRefs(layoutStore)
     -webkit-transition: width 0.25s;
     -moz-transition: width 0.25s;
     -o-transition: width 0.25s;
+  }
+
+  .el-header{
+    padding: $header-padding;
   }
 }
 </style>

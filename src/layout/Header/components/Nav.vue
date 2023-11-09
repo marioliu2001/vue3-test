@@ -1,23 +1,23 @@
 <script setup>
-import Breadcrumb from "@/layout/Header/components/Breadcrumb.vue";
+import Breadcrumb from '@/layout/Header/components/Breadcrumb.vue'
+import { Expand, Fold } from '@element-plus/icons-vue'
+import { useLayoutStore } from '@/stores/modules/layout.js'
+import { storeToRefs } from 'pinia'
+import Search from '@/layout/Header/components/Search.vue'
+import DarkMode from '@/layout/Header/components/DarkMode.vue'
+import Language from '@/layout/Header/components/Language.vue'
+import Message from '@/layout/Header/components/Message.vue'
+import FullScreen from '@/layout/Header/components/FullScreen.vue'
+import UserAvatar from '@/layout/Header/components/UserAvatar.vue'
 
 defineOptions({
-  name: 'DTNav'
+  name: 'NavBar'
 })
-import {Expand, Fold} from "@element-plus/icons-vue";
-import {useLayoutStore} from '@/stores/modules/layout.js'
-import {storeToRefs} from "pinia";
-import Search from "@/layout/Header/components/Search.vue";
-import DarkMode from "@/layout/Header/components/DarkMode.vue";
-import Language from "@/layout/Header/components/Language.vue";
-import Message from "@/layout/Header/components/Message.vue";
-import FullScreen from "@/layout/Header/components/FullScreen.vue";
-import UserAvatar from "@/layout/Header/components/UserAvatar.vue";
 
 const layoutStore = useLayoutStore()
-const {changeIsCollapse} = layoutStore
+const { changeIsCollapse } = layoutStore
 
-const {isCollapse} = storeToRefs(layoutStore)
+const { isCollapse } = storeToRefs(layoutStore)
 
 console.log('isCollapse', isCollapse.value)
 </script>
@@ -69,16 +69,15 @@ console.log('isCollapse', isCollapse.value)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
   height: 50px;
   border-bottom: 1px solid $border-color;
 
-  .nav-left{
+  .nav-left {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .el-icon{
+    .el-icon {
       margin-right: 12px;
     }
   }
@@ -87,9 +86,19 @@ console.log('isCollapse', isCollapse.value)
     display: flex;
     justify-content: center;
     align-items: center;
+
     .nav-right__item {
-      padding: 0 10px;
+      margin: 0 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      //不知道为啥这个得单独设置
+      .search{
+        display: flex;
+        text-align: center;
+      }
     }
+
     .nav-right__user {
       display: flex;
       align-items: center;

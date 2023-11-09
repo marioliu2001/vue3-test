@@ -1,22 +1,30 @@
 <script setup>
+import { Moon, Sunny } from '@element-plus/icons-vue'
+/** 引入暗黑模式hook函数 */
+import { useDark, useToggle } from '@vueuse/core'
 defineOptions({
   name: 'DarkMode'
 })
-import { ref } from 'vue'
-import {Moon, Sunny} from "@element-plus/icons-vue";
-import { useDark, useToggle } from '@vueuse/core'
 
-/** 切换模式 */
-const isDark = useDark()
+const isDark = useDark({
+  storageKey: 'ThemeSwitch',
+  // 暗黑class名字
+  valueDark: 'dark',
+  // 高亮class名字
+  valueLight: 'light'
+})
 const toggleDark = useToggle(isDark)
-/** 是否切换为暗黑模式 */
-/** 是否切换暗黑模式 */
-const darkMode = ref(false)
+
+// const darkMode = ref(isDarkMode)
+/** switch开关值发生变化触发的回调，用来控制html元素类的切换 */
+// const toggleDark = () => {
+//   document.documentElement.classList.toggle('dark')
+// };
 </script>
 
 <template>
   <el-switch
-      v-model="darkMode"
+      v-model="isDark"
       style="--el-switch-on-color: #0960bd; --el-switch-off-color: #f60"
       inline-prompt
       :active-icon="Moon"

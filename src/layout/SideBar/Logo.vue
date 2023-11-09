@@ -1,15 +1,15 @@
 <script setup>
+import { getImageUrl } from '@/utils/getImageUrl.js'
+import useLayoutStore from '@/stores/modules/layout.js'
+import { storeToRefs } from 'pinia'
+/** 引入animate.css */
+import 'animate.css'
 defineOptions({
   name: 'Logo'
 })
-import {getImageUrl} from "@/utils/getImageUrl.js"
-import useLayoutStore from "@/stores/modules/layout.js"
-import {storeToRefs} from "pinia"
-/** 引入animate.css */
-import 'animate.css'
 
 const layoutStore = useLayoutStore()
-const {isCollapse} = storeToRefs(layoutStore)
+const { isCollapse } = storeToRefs(layoutStore)
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup>
-import {Location, Setting, UserFilled} from "@element-plus/icons-vue";
+import { Location, Monitor, Setting } from '@element-plus/icons-vue'
 
 defineOptions({
   name: 'SideBarItem'
@@ -8,9 +8,9 @@ defineOptions({
 
 <template>
   <!-- 首页 -->
-  <el-menu-item index="1">
-    <el-icon><UserFilled /></el-icon>
-    <span>首页</span>
+  <el-menu-item index="dashboard">
+    <el-icon><Monitor /></el-icon>
+    <span>控制台</span>
   </el-menu-item>
   <!-- 菜单一 -->
   <el-sub-menu index="2">

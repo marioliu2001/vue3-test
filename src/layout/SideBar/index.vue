@@ -1,16 +1,16 @@
 <script setup>
-import Logo from "@/layout/SideBar/Logo.vue";
+import Logo from '@/layout/SideBar/Logo.vue'
+/** 引入SideBarItem.vue */
+import SideBarItem from './SideBarItem.vue'
+import useLayoutStore from '@/stores/modules/layout.js'
+import { storeToRefs } from 'pinia'
 
 defineOptions({
   name: 'SideBar'
 })
-/** 引入SideBarItem.vue */
-import SideBarItem from './SideBarItem.vue'
-import useLayoutStore from "@/stores/modules/layout.js"
-import {storeToRefs} from "pinia";
 
 const layoutStore = useLayoutStore()
-const {isCollapse} = storeToRefs(layoutStore)
+const { isCollapse } = storeToRefs(layoutStore)
 </script>
 
 <template>
@@ -20,7 +20,8 @@ const {isCollapse} = storeToRefs(layoutStore)
              text-color="#BBB"
              active-text-color="#fff"
             :collapse="isCollapse"
-            :collapse-transition="false">
+            :collapse-transition="false"
+            >
       <SideBarItem />
     </el-menu>
   </div>

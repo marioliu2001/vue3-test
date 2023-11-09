@@ -6,12 +6,10 @@ defineOptions({
 
 <template>
   <div class="search">
-    <el-icon :size="20"><Search /></el-icon>
+    <el-icon :size="22"><Search /></el-icon>
   </div>
 </template>
 
 <style scoped lang="scss">
-//.search{
-//  margin-top: 2px;
-//}
+
 </style>

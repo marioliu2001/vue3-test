@@ -1,8 +1,8 @@
 <script setup>
+import { ArrowRight } from '@element-plus/icons-vue'
 defineOptions({
   name: 'Breadcrumb'
 })
-import {ArrowRight} from "@element-plus/icons-vue";
 </script>
 
 <template>

@@ -1,8 +1,8 @@
 <script setup>
+import Nav from '@/layout/Header/components/Nav.vue'
 defineOptions({
-  name: 'Header'
+  name: 'HeaderContainer'
 })
-import Nav from "@/layout/Header/components/Nav.vue";
 
 </script>
 

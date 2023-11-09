@@ -6,7 +6,7 @@ defineOptions({
 
 <template>
   <div class="app">
-    <router-view></router-view>
+    <RouterView/>
   </div>
 </template>
 
