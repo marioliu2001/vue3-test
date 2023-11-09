@@ -1,7 +1,7 @@
 <script setup>
 import { Monitor } from '@element-plus/icons-vue'
 /** 引入 useFullScreen 全屏hook函数 */
-import { useFullscreen, useToggleFullscreen } from '@/hooks/useFullScreen'
+import { useFullscreen, useToggleFullscreen } from '@/hooks/useFullscreen.js'
 
 defineOptions({
   name: 'MyFullScreen'
