@@ -1,30 +1,43 @@
 <script setup>
 import { Moon, Sunny } from '@element-plus/icons-vue'
-/** 引入暗黑模式hook函数 */
-import { useDark, useToggle } from '@vueuse/core'
+import { ref, onMounted } from 'vue'
+import useLayoutStore from '@/stores/modules/layout.js'
 defineOptions({
   name: 'DarkMode'
 })
+// 有bug
+// const isDark = useDark({
+//   storageKey: 'ThemeSwitch',
+//   // 暗黑class名字
+//   valueDark: 'dark',
+//   // 高亮class名字
+//   valueLight: 'light'
+// })
+// const darkMode = ref(false)
+// const toggleDark = useToggle(isDark)
 
-const isDark = useDark({
-  storageKey: 'ThemeSwitch',
-  // 暗黑class名字
-  valueDark: 'dark',
-  // 高亮class名字
-  valueLight: 'light'
+const layoutStore = useLayoutStore()
+/** 开关绑定的值 */
+const darkMode = ref(!!layoutStore.htmlModeClass)
+
+/** 组件在页面挂载（渲染）完毕时触发 */
+onMounted(() => {
+  /** 组件渲染完毕就设置html类名 */
+  document.documentElement.className = layoutStore.htmlModeClass
 })
-const toggleDark = useToggle(isDark)
 
-// const darkMode = ref(isDarkMode)
 /** switch开关值发生变化触发的回调，用来控制html元素类的切换 */
-// const toggleDark = () => {
-//   document.documentElement.classList.toggle('dark')
-// };
+const toggleDark = () => {
+  /** 向本地缓存中添加htmlModeClass，来记录当前所处模式 */
+  /** 如果isDark为true，那么表示为暗黑模式，反之雪白模式 */
+  darkMode.value ? layoutStore.htmlModeClass = 'dark' : layoutStore.htmlModeClass = ''
+  document.documentElement.classList.toggle('dark')
+}
 </script>
 
 <template>
   <el-switch
-      v-model="isDark"
+      v-model="darkMode"
       style="--el-switch-on-color: #0960bd; --el-switch-off-color: #f60"
       inline-prompt
       :active-icon="Moon"

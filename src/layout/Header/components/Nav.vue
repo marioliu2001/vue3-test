@@ -3,6 +3,7 @@ import Breadcrumb from '@/layout/Header/components/Breadcrumb.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { useLayoutStore } from '@/stores/modules/layout.js'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 import Search from '@/layout/Header/components/Search.vue'
 import DarkMode from '@/layout/Header/components/DarkMode.vue'
 import Language from '@/layout/Header/components/Language.vue'
@@ -19,7 +20,12 @@ const { changeIsCollapse } = layoutStore
 
 const { isCollapse } = storeToRefs(layoutStore)
 
-console.log('isCollapse', isCollapse.value)
+// 小于1200px时，折叠侧边栏
+onMounted(() => {
+  if (document.body.clientWidth < 1200 && !isCollapse.value) {
+    layoutStore.changeIsCollapse()
+  }
+})
 </script>
 
 <template>
