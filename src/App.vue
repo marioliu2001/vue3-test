@@ -1,4 +1,14 @@
 <script setup>
+import { useLocalesStore } from '@/stores/modules/locales.js'
+import zh from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
+
+const useLocale = useLocalesStore()
+const locales = {
+  zh,
+  en
+}
+console.log(locales[useLocale.locale])
 defineOptions({
   name: 'App'
 })
@@ -6,7 +16,9 @@ defineOptions({
 
 <template>
   <div class="app">
-    <RouterView/>
+    <el-config-provider :locale="locales[useLocale.locale]">
+      <router-view />
+    </el-config-provider>
   </div>
 </template>
 
