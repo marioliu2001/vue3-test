@@ -4,13 +4,23 @@ import Logo from '@/layout/SideBar/Logo.vue'
 import SideBarItem from './SideBarItem.vue'
 import useLayoutStore from '@/stores/modules/layout.js'
 import { storeToRefs } from 'pinia'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'SideBar'
 })
 
+// 当前路由
+const route = useRoute()
+const activeIndex = computed(() => {
+  const { path } = route
+  return path
+})
+
 const layoutStore = useLayoutStore()
 const { isCollapse } = storeToRefs(layoutStore)
+
 </script>
 
 <template>
@@ -21,7 +31,8 @@ const { isCollapse } = storeToRefs(layoutStore)
              active-text-color="#fff"
             :collapse="isCollapse"
             :collapse-transition="false"
-            >
+             :default-active="activeIndex"
+            router>
       <SideBarItem />
     </el-menu>
   </div>

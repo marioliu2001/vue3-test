@@ -4,31 +4,33 @@ import { Location, Monitor, Setting } from '@element-plus/icons-vue'
 defineOptions({
   name: 'SideBarItem'
 })
+
 </script>
 
 <template>
   <!-- 首页 -->
-  <el-menu-item index="dashboard">
+  <el-menu-item index="/dashboard">
     <el-icon><Monitor /></el-icon>
     <span>控制台</span>
   </el-menu-item>
   <!-- 菜单一 -->
+<!--  <el-sub-menu index="2"> index的值必须设置 不然选中子菜单时刷新页面会丢失选中状态(不会展开)-->
   <el-sub-menu index="2">
     <template #title>
       <el-icon><location /></el-icon>
-      <span>菜单一</span>
+      <span>系统管理</span>
     </template>
-    <el-menu-item index="2-1"><span>item one</span></el-menu-item>
-    <el-menu-item index="2-2"><span>item two</span></el-menu-item>
+    <el-menu-item index="/user"><span>用户管理</span></el-menu-item>
+    <el-menu-item index="/role"><span>角色管理</span></el-menu-item>
   </el-sub-menu>
   <!-- 菜单项 -->
-  <el-menu-item index="3">
+  <el-menu-item index="/reports">
     <el-icon><Location /></el-icon>
-    <span>菜单二</span>
+    <span>数据报表</span>
   </el-menu-item>
-  <el-menu-item index="4">
+  <el-menu-item index="/settings">
     <el-icon><Setting /></el-icon>
-    <span>菜单4</span>
+    <span>系统设置</span>
   </el-menu-item>
 
 </template>

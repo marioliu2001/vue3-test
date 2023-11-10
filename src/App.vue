@@ -28,4 +28,35 @@ defineOptions({
   height: 100vh;
   //background-color: $main-bg-color;
 }
+/* 自定义切换动画 */
+/* 元素刚进入的状态 */
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+/* 被激活时 */
+.v-enter-active {
+  transition: all 0.3s;
+}
+/* 元素完全进入后的状态 */
+.v-enter-to,
+.v-leave {
+  opacity: 1;
+  transform: translateX(0px);
+}
+/* 元素离开前的状态 */
+/* .v-leave {
+    transform: translateX(0px);
+    opacity: 1;
+} */
+.v-leave-active {
+  transition: all 0.3s;
+}
+/* 元素离开后的状态 */
+/* .v-leave-to {
+    opacity: 0;
+    transform: translateX(-30px);
+} */
+
 </style>
