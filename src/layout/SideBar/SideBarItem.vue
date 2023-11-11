@@ -20,8 +20,8 @@ defineOptions({
       <el-icon><location /></el-icon>
       <span>系统管理</span>
     </template>
-    <el-menu-item index="/user"><span>用户管理</span></el-menu-item>
-    <el-menu-item index="/role"><span>角色管理</span></el-menu-item>
+    <el-menu-item index="/system/user"><span>用户管理</span></el-menu-item>
+    <el-menu-item index="/system/role"><span>角色管理</span></el-menu-item>
   </el-sub-menu>
   <!-- 菜单项 -->
   <el-menu-item index="/reports">
