@@ -1,7 +1,7 @@
 <script setup>
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
-import useLayoutStore from '@/stores/modules/layout.js'
+import useThemeStore from '@/stores/modules/theme.js'
 defineOptions({
   name: 'DarkMode'
 })
@@ -16,21 +16,21 @@ defineOptions({
 // const darkMode = ref(false)
 // const toggleDark = useToggle(isDark)
 
-const layoutStore = useLayoutStore()
+const themeStore = useThemeStore()
 /** 开关绑定的值 */
-const darkMode = ref(!!layoutStore.htmlModeClass)
+const darkMode = ref(!!themeStore.htmlModeClass)
 
 /** 组件在页面挂载（渲染）完毕时触发 */
 onMounted(() => {
   /** 组件渲染完毕就设置html类名 */
-  document.documentElement.className = layoutStore.htmlModeClass
+  document.documentElement.className = themeStore.htmlModeClass
 })
 
 /** switch开关值发生变化触发的回调，用来控制html元素类的切换 */
 const toggleDark = () => {
   /** 向本地缓存中添加htmlModeClass，来记录当前所处模式 */
   /** 如果isDark为true，那么表示为暗黑模式，反之雪白模式 */
-  darkMode.value ? layoutStore.htmlModeClass = 'dark' : layoutStore.htmlModeClass = ''
+  darkMode.value ? themeStore.htmlModeClass = 'dark' : themeStore.htmlModeClass = ''
   document.documentElement.classList.toggle('dark')
 }
 </script>

@@ -1,37 +1,66 @@
 <script setup>
-import { Location, Monitor, Setting } from '@element-plus/icons-vue'
-
+import { privateRoutes } from '@/router/privateRoutes.js'
 defineOptions({
   name: 'SideBarItem'
 })
-
 </script>
 
 <template>
+  <template v-for="item in privateRoutes">
+    <!--无子项-->
+    <el-menu-item
+        v-if="!item.children?.length"
+        :key="item.path"
+        :index="item.path">
+      <el-icon>
+        <component :is="item.meta.icon"></component>
+      </el-icon>
+      <span>{{ item.meta.title }}</span>
+    </el-menu-item>
+    <!--有子项-->
+    <el-sub-menu
+        v-else
+        :key="item.path"
+        :index="item.path">
+      <template #title>
+        <el-icon>
+          <component :is="item.meta.icon"></component>
+        </el-icon>
+        <span>{{ item.meta.title }}</span>
+      </template>
+      <el-menu-item
+          v-for="child in item.children"
+          :key="child.path"
+          :index="item.path + '/' + child.path">
+        <span>{{ child.meta.title }}</span>
+      </el-menu-item>
+    </el-sub-menu>
+  </template>
+
   <!-- 首页 -->
-  <el-menu-item index="/dashboard">
-    <el-icon><Monitor /></el-icon>
-    <span>控制台</span>
-  </el-menu-item>
-  <!-- 菜单一 -->
-<!--  <el-sub-menu index="2"> index的值必须设置 不然选中子菜单时刷新页面会丢失选中状态(不会展开)-->
-  <el-sub-menu index="2">
-    <template #title>
-      <el-icon><location /></el-icon>
-      <span>系统管理</span>
-    </template>
-    <el-menu-item index="/system/user"><span>用户管理</span></el-menu-item>
-    <el-menu-item index="/system/role"><span>角色管理</span></el-menu-item>
-  </el-sub-menu>
-  <!-- 菜单项 -->
-  <el-menu-item index="/reports">
-    <el-icon><Location /></el-icon>
-    <span>数据报表</span>
-  </el-menu-item>
-  <el-menu-item index="/settings">
-    <el-icon><Setting /></el-icon>
-    <span>系统设置</span>
-  </el-menu-item>
+<!--  <el-menu-item index="/dashboard">-->
+<!--    <el-icon><Monitor /></el-icon>-->
+<!--    <span>控制台</span>-->
+<!--  </el-menu-item>-->
+<!--  &lt;!&ndash; 菜单一 &ndash;&gt;-->
+<!--&lt;!&ndash;  <el-sub-menu index="2"> index的值必须设置 不然选中子菜单时刷新页面会丢失选中状态(不会展开)&ndash;&gt;-->
+<!--  <el-sub-menu index="2">-->
+<!--    <template #title>-->
+<!--      <el-icon><location /></el-icon>-->
+<!--      <span>系统管理</span>-->
+<!--    </template>-->
+<!--    <el-menu-item index="/system/user"><span>用户管理</span></el-menu-item>-->
+<!--    <el-menu-item index="/system/role"><span>角色管理</span></el-menu-item>-->
+<!--  </el-sub-menu>-->
+<!--  &lt;!&ndash; 菜单项 &ndash;&gt;-->
+<!--  <el-menu-item index="/reports">-->
+<!--    <el-icon><Location /></el-icon>-->
+<!--    <span>数据报表</span>-->
+<!--  </el-menu-item>-->
+<!--  <el-menu-item index="/settings">-->
+<!--    <el-icon><Setting /></el-icon>-->
+<!--    <span>系统设置</span>-->
+<!--  </el-menu-item>-->
 
 </template>
 

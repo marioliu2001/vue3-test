@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--  http请求头有referrer字段表示http请求的源地址信息用于服务端判断是否来自本站，非本站显示403实现图片的防盗链。
+        通过在来源策略设置为no-refferrer，此时请求不带referrer信息使对方无法拦截  -->
+    <meta name="referrer" content="no-referrer">
     <title>Vite + Vue</title>
   </head>
   <body>

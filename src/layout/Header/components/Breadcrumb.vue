@@ -38,7 +38,7 @@ const onLinkClick = (item) => {
   <div class="breadcrumb">
       <el-breadcrumb :separator-icon="ArrowRight">
 <!--        <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>-->
-        <transition-group name="breadcrumb" mode="out-in">
+        <transition-group name="breadcrumb">
         <el-breadcrumb-item v-for="(item, index) in breadcrumbData"
                             :key="item.path">
             <!-- 不可以点击项 -->

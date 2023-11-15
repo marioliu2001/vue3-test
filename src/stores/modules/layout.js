@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 export const useLayoutStore = defineStore('layout', {
   state: () => ({
-    isCollapse: false,
-    htmlModeClass: window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : ''
+    isCollapse: false
   }),
   actions: {
     // 切换isCollapse的状态

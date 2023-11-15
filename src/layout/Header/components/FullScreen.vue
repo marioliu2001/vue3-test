@@ -14,7 +14,7 @@ const toggleScreen = useToggleFullscreen(isFullScreen)
 </script>
 
 <template>
-  <div class="toggle-screen dark:text-white flex" @click="toggleScreen">
+  <div class="toggle-screen flex" @click="toggleScreen">
     <el-icon v-if="!isFullScreen" :size="22"><FullScreen /></el-icon>
     <el-icon v-else :size="22"><Monitor /></el-icon>
   </div>

@@ -29,7 +29,7 @@ const { isCollapse } = storeToRefs(layoutStore)
               <!--
                  <keep-alive include="role"> TODO 我目前先设置全部都缓存
                  这里的include="role"是为了解决keep-alive缓存问题，
-                 role首先匹配的是组件name(这里我自己如role/index.vue文件中手动设置了name)
+                 role首先匹配的是组件name(这里我自己在role/index.vue文件中手动设置了name)
                  详情请看参考：https://blog.csdn.net/seimeii/article/details/130740391
                -->
               <keep-alive>

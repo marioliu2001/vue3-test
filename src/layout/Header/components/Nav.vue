@@ -29,7 +29,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="nav dark:bg-black/75 dark:text-white" >
+<!-- 使用这个有小bug 当电脑系统为暗黑模式，这个样式会生效 -->
+<!--  <div class="nav dark:bg-black/75 dark:text-white" >-->
+  <div class="nav" >
     <!-- 左侧区域 -->
     <div class="nav-left">
       <!-- 折叠图标 -->

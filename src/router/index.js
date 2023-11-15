@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { close, start } from '@/utils/nporgress.js'
 import Layout from '@/layout/index.vue'
+import * as Guard from './guard.js' // 引入导航守卫
+import { publicRoutes } from '@/router/publicRoutes.js'
+import { privateRoutes } from '@/router/privateRoutes.js'
 
 // 创建路由实例对象
 const router = createRouter({
@@ -8,79 +10,34 @@ const router = createRouter({
   history: createWebHashHistory(),
   // 路由配置
   routes: [
+    ...publicRoutes, // 公有路由直接展示
     {
       path: '/',
+      name: 'layout',
       component: Layout,
       redirect: '/dashboard',
       children: [
+        ...privateRoutes, // 私有路由放在layout下展示
         {
-          path: '/dashboard',
-          component: () => import('@/views/dashboard/index.vue'),
+          path: '/404',
+          name: '404',
+          component: () => import('@/views/error/404.vue'),
           meta: {
-            // TODO: 路由元信息 title和icon未使用
-            title: '控制台',
-            icon: 'dashboard',
-            keepAlive: true
+            title: '404页面'
           }
         },
         {
-          path: '/reports',
-          component: () => import('@/views/reports/index.vue'),
-          meta: {
-            title: '报表数据',
-            icon: 'dashboard',
-            keepAlive: true
-          }
-        },
-        {
-          path: '/settings',
-          component: () => import('@/views/settings/index.vue'),
-          meta: {
-            title: '系统设置',
-            icon: 'dashboard',
-            keepAlive: true
-          }
-        }
-      ]
-    },
-
-    {
-      path: '/system',
-      name: 'system',
-      component: Layout,
-      redirect: '/system/user',
-      meta: {
-        title: '系统管理'
-      },
-      children: [
-        {
-          path: 'user',
-          component: () => import('@/views/user/index.vue'),
-          meta: {
-            title: '用户管理',
-            icon: 'dashboard',
-            keepAlive: false
-          }
-        },
-        {
-          path: 'role',
-          component: () => import('@/views/role/index.vue'),
-          meta: {
-            title: '角色管理',
-            icon: 'dashboard',
-            keepAlive: true
-          }
+          path: '/:pathMatch(.*)*',
+          name: 'error',
+          redirect: '/404'
         }
       ]
     }
   ]
 })
 
-router.beforeEach((pre, next) => {
-  start() // 开始进度条
-})
-router.afterEach(() => {
-  close() // 结束进度条
-})
+router.beforeEach(Guard.beforeEach) // 使用导航守卫
+router.afterEach(Guard.afterEach)
+// router.onError(Guard.onError)
 // 向外暴露路由实例对象
 export default router
