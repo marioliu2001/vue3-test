@@ -38,6 +38,6 @@ const router = createRouter({
 
 router.beforeEach(Guard.beforeEach) // 使用导航守卫
 router.afterEach(Guard.afterEach)
-// router.onError(Guard.onError)
+router.onError(Guard.onError)
 // 向外暴露路由实例对象
 export default router

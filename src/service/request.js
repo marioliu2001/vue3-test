@@ -15,7 +15,6 @@ instance.interceptors.request.use(function (config) {
   // const token = localStorage.getItem('login')
   const loginStore = useLoginStore()
   const { token } = loginStore
-  console.log('token：' + token)
   if (token) {
     // 配置请求头
     config.headers = {
@@ -53,6 +52,8 @@ instance.interceptors.response.use(function (response) {
   // 超出 2xx 范围的状态码都会触发该函数。
   // 对响应错误做点什么
   // status 是 HTTP 状态码
+  console.log('是出错了吗')
+  console.log(error)
   if (error && error.response) {
     const status = error.response.status
     switch (status) {

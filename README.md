@@ -1,3 +1,6 @@
+# 公告
+* 先暂停开发
+
 # 已完成
 * 初始化样式
 * scss
@@ -15,13 +18,14 @@
 * 登录路由拦截(判断token存在、合法、过期)
 * 优化公有路由和私有路由
 * 用户退出登录
+* autoTableHeightDirective.js 自定义指令
+* loading动画（可以设置具体组件加载<例如 div>和加载text信息，
+  设置挂载vue全局，在vue文件中通过useInstance() 获取当前实例 使用） 具体详看dashboard组件实现
 
 # 计划代办事项
 * 完善i18n(路由...)
 * 动态路由
-* 登录页面(考虑使用tailwindcss，考虑登录页面)
-* Loading
-* 登录操作(token)
+* 重画登录页面(考虑使用tailwindcss，考虑登录页面)
 * 登录后根据后端路由数据进行动态路由匹配
 * echarts并完成控制台页面
 * table表格(封装)

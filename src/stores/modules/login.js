@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { getLoginUserInfoApi, loginApi, logoutApi } from '@/api'
 import router from '@/router/index.js'
+
 export const useLoginStore = defineStore('login', {
   // 定义全局共享状态的一个初始化状态
   state: () => ({
