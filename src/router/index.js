@@ -7,7 +7,7 @@ import { privateRoutes } from '@/router/privateRoutes.js'
 // 创建路由实例对象
 const router = createRouter({
   // 创建一个 Hash 路由实例
-  history: createWebHistory('/vue3-template-admin/'),
+  history: createWebHistory('/vue3-test/'),
   // 路由配置
   routes: [
     ...publicRoutes, // 公有路由直接展示
