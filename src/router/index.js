@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Layout from '@/layout/index.vue'
+// import Layout from '@/layout/index.vue'
 import * as Guard from './guard.js' // 引入导航守卫
 import { publicRoutes } from '@/router/publicRoutes.js'
 import { privateRoutes } from '@/router/privateRoutes.js'
@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'layout',
-      component: Layout,
+      component: () => import('@/layout/index.vue'),
       redirect: '/dashboard',
       children: [
         ...privateRoutes, // 私有路由放在layout下展示
