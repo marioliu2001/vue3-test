@@ -1,0 +1,1 @@
+import{b as s}from"./_baseGet.js-10b83a90.js";import{b as r}from"./_baseSet.js-dd1216ba.js";import{c as t}from"./_castPath.js-e468e549.js";function a(a,o,e){for(var j=-1,m=o.length,b={};++j<m;){var f=o[j],i=s(a,f);e(i,f)&&r(b,t(f,a),i)}return b}export{a as b};

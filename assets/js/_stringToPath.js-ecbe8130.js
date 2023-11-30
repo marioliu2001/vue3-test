@@ -1,0 +1,1 @@
+import{m as e}from"./_memoizeCapped.js-e2b5fad6.js";var r=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,a=/\\(\\)?/g;const o=e((function(e){var o=[];return 46===e.charCodeAt(0)&&o.push(""),e.replace(r,(function(e,r,p,s){o.push(p?s.replace(a,"$1"):r||e)})),o}));export{o as s};

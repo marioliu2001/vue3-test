@@ -1,0 +1,1 @@
+import{i as t}from"./isObject.js-d40e3a1b.js";var r=Object.create;const e=function(){function e(){}return function(n){if(!t(n))return{};if(r)return r(n);e.prototype=n;var o=new e;return e.prototype=void 0,o}}();export{e as b};

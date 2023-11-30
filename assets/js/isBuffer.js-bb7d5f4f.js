@@ -1,0 +1,1 @@
+import{r as o}from"./_root.js-d2deb986.js";import{s as e}from"./stubFalse.js-1a828c64.js";var s="object"==typeof exports&&exports&&!exports.nodeType&&exports,r=s&&"object"==typeof module&&module&&!module.nodeType&&module,t=r&&r.exports===s?o.Buffer:void 0;const p=(t?t.isBuffer:void 0)||e;export{p as i};

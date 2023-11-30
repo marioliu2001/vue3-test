@@ -1,0 +1,1 @@
+import{b as s}from"./_baseIsEqualDeep.js-c702926c.js";import{i as e}from"./isObjectLike.js-99385048.js";function r(i,o,t,a,j){return i===o||(null==i||null==o||!e(i)&&!e(o)?i!=i&&o!=o:s(i,o,t,a,r,j))}export{r as b};

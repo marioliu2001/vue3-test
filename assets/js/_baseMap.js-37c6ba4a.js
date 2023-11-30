@@ -1,0 +1,1 @@
+import{b as r}from"./_baseEach.js-63fcfa8d.js";import{i as s}from"./isArrayLike.js-1e4e6bb6.js";function a(a,i){var o=-1,t=s(a)?Array(a.length):[];return r(a,(function(r,s,a){t[++o]=i(r,s,a)})),t}export{a as b};

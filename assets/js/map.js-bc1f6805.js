@@ -1,0 +1,1 @@
+import{a as r}from"./_arrayMap.js-f1a06e73.js";import{b as s}from"./_baseIteratee.js-c2c3a1d5.js";import{b as a}from"./_baseMap.js-37c6ba4a.js";import{i as o}from"./isArray.js-5708991a.js";function m(m,t){return(o(m)?r:a)(m,s(t))}export{m};

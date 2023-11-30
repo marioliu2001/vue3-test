@@ -1,0 +1,1 @@
+import{f as e}from"./_freeGlobal.js-b2eaa791.js";var o="object"==typeof exports&&exports&&!exports.nodeType&&exports,r=o&&"object"==typeof module&&module&&!module.nodeType&&module,t=r&&r.exports===o&&e.process;const p=function(){try{var e=r&&r.require&&r.require("util").types;return e||t&&t.binding&&t.binding("util")}catch(o){}}();export{p as n};

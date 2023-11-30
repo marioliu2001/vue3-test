@@ -1,0 +1,1 @@
+import{a as r}from"./_apply.js-62d2339e.js";var a=Math.max;function t(t,o,n){return o=a(void 0===o?t.length-1:o,0),function(){for(var e=arguments,f=-1,i=a(e.length-o,0),s=Array(i);++f<i;)s[f]=e[o+f];f=-1;for(var h=Array(o+1);++f<o;)h[f]=e[f];return h[o]=n(s),r(t,this,h)}}export{t as o};

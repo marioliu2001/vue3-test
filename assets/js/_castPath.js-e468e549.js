@@ -1,0 +1,1 @@
+import{i as s}from"./isArray.js-5708991a.js";import{i as r}from"./_isKey.js-9d8823f0.js";import{s as o}from"./_stringToPath.js-ecbe8130.js";import{t}from"./toString.js-949896e8.js";function i(i,j){return s(i)?i:r(i,j)?[i]:o(t(i))}export{i as c};

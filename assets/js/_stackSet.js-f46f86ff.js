@@ -1,0 +1,1 @@
+import{L as s}from"./_ListCache.js-f0610a55.js";import{M as t}from"./_Map.js-e86de983.js";import{M as i}from"./_MapCache.js-d91d8261.js";function a(a,_){var e=this.__data__;if(e instanceof s){var r=e.__data__;if(!t||r.length<199)return r.push([a,_]),this.size=++e.size,this;e=this.__data__=new i(r)}return e.set(a,_),this.size=e.size,this}export{a as s};

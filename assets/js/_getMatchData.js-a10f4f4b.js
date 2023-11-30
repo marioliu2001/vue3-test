@@ -1,0 +1,1 @@
+import{i as r}from"./_isStrictComparable.js-b788f9fe.js";import{k as s}from"./keys.js-2d1e1b2d.js";function o(o){for(var t=s(o),a=t.length;a--;){var i=t[a],e=o[i];t[a]=[i,e,r(e)]}return t}export{o as g};
