@@ -7,6 +7,8 @@ on:
     # 触发条件为分支为master的push事件
     branches:
       - master
+permissions:
+  contents: write  # 权限部分，设置为对内容具有写权限
 
 jobs:
   # 定义一个名为deploy的工作流程
@@ -16,11 +18,11 @@ jobs:
     steps:
       # 步骤1：使用checkout action获取代码
       - name: 使用checkout action获取代码
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # 步骤2：使用node action安装node
       - name: 安装node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
@@ -31,6 +33,14 @@ jobs:
       # 步骤4：使用npm action打包代码
       - name: 打包代码
         run: npm run build
+
+      # 步骤5：部署到github pages
+      - name: 部署到github pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # 默认值
+          folder: dist
+
 
 #      # 步骤5：使用ssh action连接服务器
 #      - name: 连接服务器
