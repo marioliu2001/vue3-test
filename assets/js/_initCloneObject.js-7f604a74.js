@@ -1,1 +1,0 @@
-import{b as o}from"./_baseCreate.js-8514e5b6.js";import{g as t}from"./_getPrototype.js-d5982ba6.js";import{i as r}from"./_isPrototype.js-271ab44f.js";function s(s){return"function"!=typeof s.constructor||r(s)?{}:o(t(s))}export{s as i};

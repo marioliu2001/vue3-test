@@ -1,1 +1,0 @@
-import{r as o}from"./_root.js-d2deb986.js";var e="object"==typeof exports&&exports&&!exports.nodeType&&exports,r=e&&"object"==typeof module&&module&&!module.nodeType&&module,t=r&&r.exports===e?o.Buffer:void 0,p=t?t.allocUnsafe:void 0;function s(o,e){if(e)return o.slice();var r=o.length,t=p?p(r):new o.constructor(r);return o.copy(t),t}export{s as c};

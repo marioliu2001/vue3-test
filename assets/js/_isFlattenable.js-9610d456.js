@@ -1,1 +1,0 @@
-import{S as r}from"./_Symbol.js-d4ebdef5.js";import{i as s}from"./isArguments.js-18475d90.js";import{i}from"./isArray.js-5708991a.js";var o=r?r.isConcatSpreadable:void 0;function a(r){return i(r)||s(r)||!!(o&&r&&r[o])}export{a as i};

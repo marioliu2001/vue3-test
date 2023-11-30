@@ -1,1 +1,0 @@
-import{b as t}from"./_baseIsMatch.js-760a3c4a.js";import{g as r}from"./_getMatchData.js-a10f4f4b.js";import{m as a}from"./_matchesStrictComparable.js-bf5f588c.js";function s(s){var o=r(s);return 1==o.length&&o[0][2]?a(o[0][0],o[0][1]):function(r){return r===s||t(r,s,o)}}export{s as b};

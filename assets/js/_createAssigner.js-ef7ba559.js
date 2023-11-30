@@ -1,1 +1,0 @@
-import{b as t}from"./_baseRest.js-e8846485.js";import{i as o}from"./_isIterateeCall.js-fce31643.js";function r(r){return t((function(t,e){var i=-1,n=e.length,s=n>1?e[n-1]:void 0,a=n>2?e[2]:void 0;for(s=r.length>3&&"function"==typeof s?(n--,s):void 0,a&&o(e[0],e[1],a)&&(s=n<3?void 0:s,n=1),t=Object(t);++i<n;){var f=e[i];f&&r(t,f,i,s)}return t}))}export{r as c};

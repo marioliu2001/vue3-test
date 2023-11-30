@@ -1,1 +1,0 @@
-import{S as r}from"./_Symbol.js-d4ebdef5.js";var t=Object.prototype,o=t.hasOwnProperty,a=t.toString,e=r?r.toStringTag:void 0;function c(r){var t=o.call(r,e),c=r[e];try{r[e]=void 0;var i=!0}catch(n){}var l=a.call(r);return i&&(t?r[e]=c:delete r[e]),l}export{c as g};

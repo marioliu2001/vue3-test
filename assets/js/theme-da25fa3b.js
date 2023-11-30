@@ -1,0 +1,1 @@
+import{d as e}from"./pinia-d932e60b.js";const s=e("theme",{state:()=>({htmlModeClass:window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":""}),actions:{},persist:{enabled:!0,strategies:[{storage:sessionStorage}]}});export{s as u};

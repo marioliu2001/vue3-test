@@ -1,1 +1,0 @@
-import{a as r}from"./_arrayPush.js-9ada0d3d.js";import{i as a}from"./_isFlattenable.js-9610d456.js";function s(t,o,e,n,i){var f=-1,j=t.length;for(e||(e=a),i||(i=[]);++f<j;){var l=t[f];o>0&&e(l)?o>1?s(l,o-1,e,n,i):r(i,l):n||(i[i.length]=l)}return i}export{s as b};

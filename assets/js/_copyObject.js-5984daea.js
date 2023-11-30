@@ -1,1 +1,0 @@
-import{a as s}from"./_assignValue.js-60b515e4.js";import{b as a}from"./_baseAssignValue.js-511f19d3.js";function r(r,o,i,e){var n=!i;i||(i={});for(var t=-1,v=o.length;++t<v;){var f=o[t],j=e?e(i[f],r[f],f,i,r):void 0;void 0===j&&(j=r[f]),n?a(i,f,j):s(i,f,j)}return i}export{r as c};

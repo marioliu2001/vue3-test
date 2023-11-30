@@ -1,1 +1,0 @@
-import{b as t}from"./_baseGetTag.js-271e6c42.js";import{i as o}from"./isObject.js-d40e3a1b.js";function r(r){if(!o(r))return!1;var e=t(r);return"[object Function]"==e||"[object GeneratorFunction]"==e||"[object AsyncFunction]"==e||"[object Proxy]"==e}export{r as i};

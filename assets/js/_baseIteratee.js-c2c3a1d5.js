@@ -1,1 +1,0 @@
-import{b as s}from"./_baseMatches.js-4609defa.js";import{b as r}from"./_baseMatchesProperty.js-2a03910c.js";import{i as t}from"./identity.js-4a5ba4c0.js";import{i as o}from"./isArray.js-5708991a.js";import{p as e}from"./property.js-ee723807.js";function i(i){return"function"==typeof i?i:null==i?t:"object"==typeof i?o(i)?r(i[0],i[1]):s(i):e(i)}export{i as b};

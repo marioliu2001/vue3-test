@@ -1,1 +1,0 @@
-import{M as e}from"./_MapCache.js-d91d8261.js";function t(n,a){if("function"!=typeof n||null!=a&&"function"!=typeof a)throw new TypeError("Expected a function");var r=function(){var e=arguments,t=a?a.apply(this,e):e[0],c=r.cache;if(c.has(t))return c.get(t);var o=n.apply(this,e);return r.cache=c.set(t,o)||c,o};return r.cache=new(t.Cache||e),r}t.Cache=e;export{t as m};

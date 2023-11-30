@@ -1,1 +1,0 @@
-import{b as s}from"./_baseAssignValue.js-511f19d3.js";import{e as a}from"./eq.js-fbd98721.js";var o=Object.prototype.hasOwnProperty;function r(r,e,t){var i=r[e];o.call(r,e)&&a(i,t)&&(void 0!==t||e in r)||s(r,e,t)}export{r as a};

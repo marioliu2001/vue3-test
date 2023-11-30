@@ -1,1 +1,0 @@
-import{i as r}from"./isArray.js-5708991a.js";import{i as o}from"./isSymbol.js-79d733ea.js";var s=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,t=/^\w*$/;function i(i,e){if(r(i))return!1;var n=typeof i;return!("number"!=n&&"symbol"!=n&&"boolean"!=n&&null!=i&&!o(i))||(t.test(i)||!s.test(i)||null!=e&&i in Object(e))}export{i};

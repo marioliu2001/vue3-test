@@ -1,1 +1,0 @@
-import{e as r}from"./eq.js-fbd98721.js";import{i as s}from"./isArrayLike.js-1e4e6bb6.js";import{i}from"./_isIndex.js-988a1996.js";import{i as t}from"./isObject.js-d40e3a1b.js";function e(e,o,j){if(!t(j))return!1;var m=typeof o;return!!("number"==m?s(j)&&i(o,j.length):"string"==m&&o in j)&&r(j[o],e)}export{e as i};

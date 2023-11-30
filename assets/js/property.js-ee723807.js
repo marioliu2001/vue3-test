@@ -1,1 +1,0 @@
-import{b as s}from"./_baseProperty.js-2bd38b3d.js";import{b as r}from"./_basePropertyDeep.js-50f12aab.js";import{i as o}from"./_isKey.js-9d8823f0.js";import{t}from"./_toKey.js-ceab1899.js";function e(e){return o(e)?s(t(e)):r(e)}export{e as p};
