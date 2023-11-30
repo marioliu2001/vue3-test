@@ -9,7 +9,7 @@
     <el-button type="info" @click="myPikPak3" disabled>用户登录接口3</el-button>
     <el-button type="info" @click="myPikPak4('123')">局部加载loading(含参数)</el-button>
     <el-button type="info" @click="myPikPak5">取消loading</el-button>
-    <div class="needLoading" style="width: 100px;height: 100px;background-color: black;"></div>
+    <div class="needLoading" style="width: 100px;height: 100px;background-color: pink;"></div>
   </div>
 </template>
 <script setup>
@@ -33,14 +33,13 @@ const userForm = reactive({
 // 获取全局实例
 // const { appContext } = getCurrentInstance()
 // const global = appContext.config.globalProperties
-const { global, proxy } = useInstance() // 封装了个方法，两行代码变一行
+const { global } = useInstance() // 封装了个方法，两行代码变一行
 
 const myPikPak3 = () => {
   loginStore.doLogin(userForm)
 }
 const myPikPak4 = (msg) => {
-  global.$myLoading.showFullScreenLoading('.needLoading', '挂载全局的loading') // 通过全局挂载
-  console.log(proxy)
+  global.$myLoading.showFullScreenLoading('.needLoading', msg) // 通过全局挂载
   // showFullScreenLoading('.needLoading', msg) 通过方法引入
 }
 const myPikPak5 = () => {
