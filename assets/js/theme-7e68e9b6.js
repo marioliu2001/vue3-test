@@ -1,0 +1,1 @@
+import{d as e}from"./vendor-b3ef81b6.js";const s=e("theme",{state:()=>({htmlModeClass:window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":""}),actions:{},persist:{enabled:!0,strategies:[{storage:sessionStorage}]}});export{s as u};

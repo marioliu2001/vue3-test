@@ -1,0 +1,1 @@
+import{_ as s}from"./index-0b0c78ac.js";import{o as t,b as n}from"./vendor-b3ef81b6.js";const o={class:"settings"};const r=s({},[["render",function(s,r){return t(),n("div",o," Settings ")}]]);export{r as default};
