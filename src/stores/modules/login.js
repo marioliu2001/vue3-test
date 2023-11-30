@@ -24,18 +24,18 @@ export const useLoginStore = defineStore('login', {
   actions: {
     // 登录
     async doLogin (userForm) {
-      const username = userForm.username
-      const password = userForm.password
+      // const username = userForm.username
+      // const password = userForm.password
       // 所有的异常都在http.js中处理了 只需要判断res和res.code的值就行
-      const res = await loginApi(username, password)
-      if (res && res.code === 200) {
-        // 添加token
-        this.token = res.data.tokenValue
-        // 获取用户信息
-        await this.doInfo()
-        // 跳转主页
-        await router.push('/')
-      }
+      // const res = await loginApi(username, password)
+      // if (res && res.code === 200) {
+      // 添加token
+      // this.token = res.data.tokenValue
+      // 获取用户信息
+      // await this.doInfo()
+      // 跳转主页
+      await router.push('/')
+      // }
     },
     // 获取登录用户信息
     async doInfo () {

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import * as Guard from './guard.js' // 引入导航守卫
 import { publicRoutes } from '@/router/publicRoutes.js'
@@ -7,7 +7,7 @@ import { privateRoutes } from '@/router/privateRoutes.js'
 // 创建路由实例对象
 const router = createRouter({
   // 创建一个 Hash 路由实例
-  history: createWebHashHistory(),
+  history: createWebHistory('/vue3-template-admin/'),
   // 路由配置
   routes: [
     ...publicRoutes, // 公有路由直接展示
