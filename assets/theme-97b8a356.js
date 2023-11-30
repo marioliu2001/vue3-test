@@ -1,0 +1,1 @@
+import{aT as r,ax as a}from"./index-580bfb33.js";function t(){if(!arguments.length)return[];var e=arguments[0];return r(e)?e:[e]}const o=a("theme",{state:()=>({htmlModeClass:window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":""}),actions:{},persist:{enabled:!0,strategies:[{storage:sessionStorage}]}});export{t as c,o as u};
